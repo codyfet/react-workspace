@@ -17,29 +17,31 @@ npm init -y
 
 Установить webpack, webpack-cli
 ```
-npm install -save-dev webpack webpack-cli
+npm install --save-dev webpack webpack-cli
 ```
 
-Создать точку входа для webpack
+Создать пустой js файл, который будет служить точкой входа для webpack
 ```
-touch src/index.js
+mkdir src
+cd src
+touch index.js
 ```
 
 Настроить в package.json скрипты (production, development)
 ```
-...
-  start webpack —mode development
-  start webpack —mode production
-...
+"scripts": {
+  "start": "webpack --mode development",
+  "build": "webpack --mode production"
+}
 ```
 Установить библиотеки react, react-dom
 ```
-npm install —save react react-dom
+npm install --save react react-dom
 ```
 
 Установить babel и пресеты для реакта
 ```
-npm install —save-dev babel-core babel-loader babel-preset-env babel-preset-react
+npm install --save-dev babel-core babel-loader babel-preset-env babel-preset-react
 ```
 
 Создать webpack.config.js
@@ -68,7 +70,7 @@ module.exports = {
 }
 ```
 
-Создать корневой html файл в папке src
+Создать корневой index.html файл в папке src
 ```
 <!DOCTYPE html>
 <html lang="en">
@@ -89,22 +91,29 @@ module.exports = {
 
 Установить html-webpack-plugin
 ```
-npm install  —save-dev html-webpack-plugin
+npm install --save-dev html-webpack-plugin
 ```
 
 Установить webpack-dev-server
 ```
-npm install  —save-dev webpack-dev-server
+npm install --save-dev webpack-dev-server
 ```
 
 Изменить скрипт в package.json
 ```
-"start": "webpack-dev-server —mode development —open"
+"start": "webpack-dev-server --mode development --open --hot"
 ```
 
-Установить лоадеры для работы с css и less
+Установить less и лоадеры для работы с css и less
 ```
-npm install —save-dev style-loader css-loader less-loader
+npm install --save-dev style-loader css-loader less-loader less
+```
+
+Создать файл src/main.less с содержимым 
+```
+body {
+    background: #00bcd4;
+}
 ```
 
 Поменять webpack.config.js (настроить плагины и лоадеры)
@@ -147,7 +156,7 @@ import ReactDOM from "react-dom";
 
 import mainLess from "./main.less";
 
-class HelloWorld extends Component {
+class HelloWorld extends React.Component {
     render () {
         return <div>Hellow, world!</div>
     }
