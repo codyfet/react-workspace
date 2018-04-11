@@ -1,12 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import {BrowserRouter} from 'react-router-dom';
 
-import "./main.less";
+import {App} from './App.js';
 
-class HelloWorld extends React.Component {
-    render () {
-        return <div>Hellow, world!</div>
-    }
-}
-
-ReactDOM.render(<HelloWorld />, document.getElementById("root"));
+ReactDOM.render(
+    <BrowserRouter>
+        <App />
+    </BrowserRouter>, 
+    document.getElementById("root")
+);
