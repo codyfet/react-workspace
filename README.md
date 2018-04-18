@@ -165,6 +165,22 @@ class HelloWorld extends React.Component {
 ReactDOM.render(<HelloWorld />, document.getElementById("root"));
 ```
 
+UPDATE: Для того, чтобы в es6 классах можно было писать методы через стрелочные функции необходимо установить плагин для бабеля
+```
+npm install --save-dev babel-plugin-transform-class-properties
+```
+
+И обновить файл с настройками .babelrc
+```
+{
+    "presets": [
+        "env",
+        "react"
+    ],
+    "plugins": ["transform-class-properties"]
+}
+```
+
 После того, как эти шаги были выполнены, необходимо выполнить команду
 ```
 npm run start
