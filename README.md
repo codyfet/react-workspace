@@ -154,7 +154,7 @@ module.exports = {
 import React from "react";
 import ReactDOM from "react-dom";
 
-import from "./main.less";
+import "./main.less";
 
 class HelloWorld extends React.Component {
     render () {
