@@ -1,11 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import "./main.less";
+import "./styles";
 
 class HelloWorld extends React.Component {
     render () {
-        return <div>Hellow, world!</div>
+        return <span>Hello world!</span>
     }
 }
 
