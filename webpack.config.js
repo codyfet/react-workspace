@@ -1,19 +1,23 @@
-const HtmlWebPackPlugin = require("html-webpack-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
 
-const htmlPlugin = new HtmlWebPackPlugin({
-    template: "./src/index.html",
+var htmlPlugin = new HtmlWebpackPlugin({
+    template: "./dist/index.html",
     filename: "./index.html"
 });
 
 module.exports = {
+    entry: './src/index.jsx',
+    output: {
+        path: __dirname + '/dist/index.html',
+        filename: 'index_bundle.js'
+    },
     module: {
         rules: [
             {
-                test: /\.js$/,
+                test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
-                use: {
-                    loader: "babel-loader"
-                }
+                use: ['babel-loader']
             }, 
             {
                 test: /\.css$/,
@@ -23,7 +27,14 @@ module.exports = {
                 test: /\.less$/,
                 use: ["style-loader", "css-loader", "less-loader"]
             }
-        ]
+        ],
+    },
+    devServer: {
+        contentBase: './dist'
+    },
+    resolve: {
+        //Automatically resolve certain extensions.
+        extensions: ['.less', '.js', '.jsx']
     },
     plugins: [htmlPlugin]
-}
+};
