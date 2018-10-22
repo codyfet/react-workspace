@@ -41,7 +41,7 @@ npm install --save react react-dom
 
 Установить babel и пресеты для реакта
 ```shell
-npm install --save-dev babel-core babel-loader babel-preset-env babel-preset-react
+npm install --save-dev babel-loader @babel/core @babel/preset-env @babel/preset-react
 ```
 
 Создать webpack.config.js
@@ -64,8 +64,8 @@ module.exports = {
 ```js
 {
     "presets": [
-        "env",
-        "react"
+        "@babel/preset-env",
+        "@babel/preset-react"
     ]
 }
 ```
