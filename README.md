@@ -127,12 +127,12 @@ const HtmlWebPackPlugin = require("html-webpack-plugin");
 const path = require('path');
 
 const htmlPlugin = new HtmlWebPackPlugin({
-    template: "./dist/index.html",
+    template: "./src/index.html",
     filename: "./index.html"
 });
 
 module.exports = {
-    entry: './src/index.jsx',
+    entry: './src/index.js',
     output: {
         path: __dirname + '/dist/index.html',
         filename: 'bundle.js'
@@ -158,7 +158,7 @@ module.exports = {
         contentBase: './dist'
     },
     resolve: {
-        //Automatically resolve certain extensions.
+        // Automatically resolve certain extensions.
         extensions: ['.less', '.js', '.jsx']
     },
     plugins: [htmlPlugin]
@@ -190,8 +190,8 @@ npm install --save-dev babel-plugin-transform-class-properties
 ```js
 {
     "presets": [
-        "env",
-        "react"
+        "@babel/preset-env",
+        "@babel/preset-react"
     ],
     "plugins": ["transform-class-properties"]
 }
