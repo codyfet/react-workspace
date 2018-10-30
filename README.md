@@ -112,30 +112,32 @@ npm install --save-dev style-loader css-loader less-loader less
 Создать файл src/styles.less с содержимым 
 ```css
 body {
-    background: rgb(255, 254, 254);
+    background: white;
     text-align: center;
+
     span {
-        font-size: 110pt;
+        font-size: 50px;
     }
 }
+
 
 ```
 
 Поменять webpack.config.js (настроить плагины и лоадеры)
 ```js
-const HtmlWebPackPlugin = require("html-webpack-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
-const htmlPlugin = new HtmlWebPackPlugin({
+var htmlPlugin = new HtmlWebpackPlugin({
     template: "./src/index.html",
     filename: "./index.html"
 });
 
 module.exports = {
-    entry: './src/index.js',
+    entry: './src/index.jsx',
     output: {
-        path: __dirname + '/dist/index.html',
-        filename: 'bundle.js'
+        path: __dirname + '/build',
+        filename: 'index_bundle.js'
     },
     module: {
         rules: [
@@ -152,17 +154,13 @@ module.exports = {
                 test: /\.less$/,
                 use: ["style-loader", "css-loader", "less-loader"]
             }
-        ]
-    },
-    devServer: {
-        contentBase: './dist'
+        ],
     },
     resolve: {
-        // Automatically resolve certain extensions.
         extensions: ['.less', '.js', '.jsx']
     },
     plugins: [htmlPlugin]
-}
+};
 ```
 
 Пример Hello world приложения на реакт. Содержимое файла src/index.js

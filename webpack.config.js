@@ -2,14 +2,14 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
 var htmlPlugin = new HtmlWebpackPlugin({
-    template: "./dist/index.html",
+    template: "./src/index.html",
     filename: "./index.html"
 });
 
 module.exports = {
     entry: './src/index.jsx',
     output: {
-        path: __dirname + '/dist/index.html',
+        path: __dirname + '/build',
         filename: 'index_bundle.js'
     },
     module: {
@@ -29,11 +29,7 @@ module.exports = {
             }
         ],
     },
-    devServer: {
-        contentBase: './dist'
-    },
     resolve: {
-        //Automatically resolve certain extensions.
         extensions: ['.less', '.js', '.jsx']
     },
     plugins: [htmlPlugin]
