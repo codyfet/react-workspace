@@ -8,9 +8,13 @@ var htmlPlugin = new HtmlWebpackPlugin({
 
 module.exports = {
     entry: './src/index.jsx',
+    /**
+     * Секцию output в данном случае можно было бы опустить,
+     * т.к. по умолчанию заданы именно такие настройки.
+     */
     output: {
-        path: __dirname + '/build',
-        filename: 'index_bundle.js'
+        path: __dirname + '/dist',
+        filename: 'main.js'
     },
     module: {
         rules: [
@@ -30,7 +34,7 @@ module.exports = {
         ],
     },
     resolve: {
-        extensions: ['.less', '.js', '.jsx']
+        extensions: ['.js', '.jsx', '.css', '.less']
     },
     plugins: [htmlPlugin]
 };
