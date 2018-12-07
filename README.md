@@ -7,6 +7,7 @@ npm install
 
 npm run start
 ```
+## Поэтапная настройка workspace с нуля
 
 Если вы хотите построить воркспейс самостоятельно, проделав руками все шаги, следуйте инструкциям:
 
@@ -14,6 +15,7 @@ npm run start
 ```shell
 npm init -y
 ```
+### Устанавливаем webpack
 
 Установить webpack, webpack-cli
 ```shell
@@ -27,24 +29,31 @@ cd src
 touch index.js
 ```
 
-Настроить в package.json скрипты (production, development)
+Настроить в package.json скрипты для выполнения сборки (production, development)
 ```js
 "scripts": {
   "start": "webpack --mode development",
   "build": "webpack --mode production"
 }
 ```
-Установить библиотеки react, react-dom
+### Устанавливаем babel
+
+Установить babel и пресеты
 ```shell
-npm install --save react react-dom
+npm install --save-dev babel-loader @babel/core @babel/preset-env
 ```
 
-Установить babel и пресеты для реакта
-```shell
-npm install --save-dev babel-loader @babel/core @babel/preset-env @babel/preset-react
+Создать .babelrc для настройки babel
+```js
+{
+    "presets": [
+        "@babel/preset-env"
+    ]
+}
 ```
+### Настраиваем webpack
 
-Создать webpack.config.js
+Создать webpack.config.js и добавить babel-loader
 ```js
 module.exports = {
     module: {
@@ -58,15 +67,6 @@ module.exports = {
             }          
         ]
     }
-}
-```
-Создать .babelrc для настройки babel
-```js
-{
-    "presets": [
-        "@babel/preset-env",
-        "@babel/preset-react"
-    ]
 }
 ```
 
@@ -103,6 +103,7 @@ npm install --save-dev webpack-dev-server
 ```js
 "start": "webpack-dev-server --mode development --open --hot"
 ```
+### Настраиваем работу со стилями
 
 Установить less и лоадеры для работы с css и less
 ```shell
@@ -119,8 +120,6 @@ body {
         font-size: 50px;
     }
 }
-
-
 ```
 
 Поменять webpack.config.js (настроить плагины и лоадеры)
@@ -134,15 +133,19 @@ var htmlPlugin = new HtmlWebpackPlugin({
 });
 
 module.exports = {
-    entry: './src/index.jsx',
+    entry: './src/index.js',
+    /**
+     * Секцию output в данном случае можно было бы опустить,
+     * т.к. по умолчанию заданы именно такие настройки.
+     */
     output: {
-        path: __dirname + '/build',
-        filename: 'index_bundle.js'
+        path: __dirname + '/dist',
+        filename: 'main.js'
     },
     module: {
         rules: [
             {
-                test: /\.(js|jsx)$/,
+                test: /\.(js)$/,
                 exclude: /node_modules/,
                 use: ['babel-loader']
             }, 
@@ -157,10 +160,31 @@ module.exports = {
         ],
     },
     resolve: {
-        extensions: ['.less', '.js', '.jsx']
+        extensions: ['.js', '.css', '.less']
     },
     plugins: [htmlPlugin]
 };
+```
+### Устанавливаем react
+
+Установить библиотеки react, react-dom
+```shell
+npm install --save react react-dom
+```
+
+Установить пресеты для babel для реакта
+```shell
+npm install --save-dev @babel/preset-react
+```
+
+Меняем .babelrc, добавляем пресеты в настройки 
+```js
+{
+    "presets": [
+        "@babel/preset-env",
+        "@babel/preset-react"
+    ]
+}
 ```
 
 Пример Hello world приложения на реакт. Содержимое файла src/index.js
@@ -179,7 +203,13 @@ class HelloWorld extends React.Component {
 ReactDOM.render(<HelloWorld />, document.getElementById("root"));
 ```
 
-UPDATE: Для того, чтобы в es6 классах можно было писать методы через стрелочные функции необходимо установить плагин для бабеля
+UPDATE#1: При написании реакт компонентов принято использовать расширение для файлов .jsx
+* Переименуйте файл ```index.js``` --> ```index.jsx```
+* Измените в настройках entry в файле webpack.config.js значение ```'./src/index.js'``` --> ```'./src/index.jsx'```
+* Измените правило для babel-loader ```test: /\.(js)$/``` --> ```test: /\.(js|jsx)$/```
+* Добавьте в секцию resolve значение ```['.js', '.css', '.less']``` --> ```['.js', '.jsx', '.css', '.less']```
+
+UPDATE#2: Для того, чтобы в es6 классах можно было писать методы через стрелочные функции необходимо установить плагин для бабеля
 ```shell
 npm install --save-dev babel-plugin-transform-class-properties
 ```
