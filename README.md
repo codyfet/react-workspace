@@ -133,14 +133,14 @@ var htmlPlugin = new HtmlWebpackPlugin({
 });
 
 module.exports = {
-    entry: './src/index.js',
     /**
-     * Секцию output в данном случае можно было бы опустить,
+     * Секции entry и output в данном случае можно было бы опустить,
      * т.к. по умолчанию заданы именно такие настройки.
      */
+    entry: "./src/index.js",
     output: {
-        path: __dirname + '/dist',
-        filename: 'main.js'
+        filename: "bundle.js",
+        path: path.resolve(__dirname, "dist")
     },
     module: {
         rules: [
