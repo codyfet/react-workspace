@@ -13,8 +13,8 @@ module.exports = {
      * т.к. по умолчанию заданы именно такие настройки.
      */
     output: {
-        path: __dirname + '/dist',
-        filename: 'main.js'
+        filename: 'main.js',
+        path: path.resolve(__dirname, 'dist')
     },
     module: {
         rules: [
