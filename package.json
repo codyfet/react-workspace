@@ -4,8 +4,9 @@
   "description": "Простой воркспейс для старта разработки реакт приложения.",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --mode development --open --hot",
-    "build": "webpack --mode production"
+    "dev": "webpack --mode production",
+    "build": "webpack --mode production",
+    "start": "webpack-dev-server --mode development --open --hot"
   },
   "repository": {
     "type": "git",

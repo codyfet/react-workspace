@@ -2,7 +2,7 @@
 Простой воркспейс для старта разработки реакт приложения.
 
 Чтобы воспользоваться готовым workspace необходимо склонировать проект и выполнить
-```shell 
+```shell
 npm install
 
 npm run start
@@ -31,9 +31,9 @@ touch index.js
 
 Настроить в package.json скрипты для выполнения сборки (production, development)
 ```js
-"scripts": {
-  "start": "webpack --mode development",
-  "build": "webpack --mode production"
+'scripts': {
+  'dev': 'webpack --mode development',
+  'build': 'webpack --mode production'
 }
 ```
 ### Устанавливаем babel
@@ -46,8 +46,8 @@ npm install --save-dev babel-loader @babel/core @babel/preset-env
 Создать .babelrc для настройки babel
 ```js
 {
-    "presets": [
-        "@babel/preset-env"
+    'presets': [
+        '@babel/preset-env'
     ]
 }
 ```
@@ -62,9 +62,9 @@ module.exports = {
                 test: /\.js$/,
                 exclude: /node_modules/,
                 use: {
-                    loader: "babel-loader"
+                    loader: 'babel-loader'
                 }
-            }          
+            }
         ]
     }
 }
@@ -73,17 +73,17 @@ module.exports = {
 Создать корневой index.html файл в папке src
 ```html
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>React Application</title>    
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+    <title>React Application</title>
 </head>
 
 <body>
-      <div id="root"></div>
+      <div id='root'></div>
 </body>
 
 </html>
@@ -101,7 +101,9 @@ npm install --save-dev webpack-dev-server
 
 Изменить скрипт в package.json
 ```js
-"start": "webpack-dev-server --mode development --open --hot"
+'dev': 'webpack --mode development',
+'build': 'webpack --mode production',
+'start': 'webpack-dev-server --mode development --open --hot'
 ```
 ### Настраиваем работу со стилями
 
@@ -110,7 +112,7 @@ npm install --save-dev webpack-dev-server
 npm install --save-dev style-loader css-loader less-loader less
 ```
 
-Создать файл src/styles.less с содержимым 
+Создать файл src/styles.less с содержимым
 ```css
 body {
     background: white;
@@ -127,9 +129,9 @@ body {
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
-var htmlPlugin = new HtmlWebpackPlugin({
-    template: "./src/index.html",
-    filename: "./index.html"
+const htmlPlugin = new HtmlWebpackPlugin({
+    template: './src/index.html',
+    filename: './index.html'
 });
 
 module.exports = {
@@ -137,10 +139,10 @@ module.exports = {
      * Секции entry и output в данном случае можно было бы опустить,
      * т.к. по умолчанию заданы именно такие настройки.
      */
-    entry: "./src/index.js",
+    entry: './src/index.js',
     output: {
-        filename: "bundle.js",
-        path: path.resolve(__dirname, "dist")
+        filename: 'bundle.js',
+        path: path.resolve(__dirname, 'dist')
     },
     module: {
         rules: [
@@ -148,14 +150,14 @@ module.exports = {
                 test: /\.(js)$/,
                 exclude: /node_modules/,
                 use: ['babel-loader']
-            }, 
+            },
             {
                 test: /\.css$/,
                 use: ['style-loader', 'css-loader']
             },
             {
                 test: /\.less$/,
-                use: ["style-loader", "css-loader", "less-loader"]
+                use: ['style-loader', 'css-loader', 'less-loader']
             }
         ],
     },
@@ -177,22 +179,22 @@ npm install --save react react-dom
 npm install --save-dev @babel/preset-react
 ```
 
-Меняем .babelrc, добавляем пресеты в настройки 
+Меняем .babelrc, добавляем пресеты в настройки
 ```js
 {
-    "presets": [
-        "@babel/preset-env",
-        "@babel/preset-react"
+    'presets': [
+        '@babel/preset-env',
+        '@babel/preset-react'
     ]
 }
 ```
 
 Пример Hello world приложения на реакт. Содержимое файла src/index.js
 ```js
-import React from "react";
-import ReactDOM from "react-dom";
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-import "./styles";
+import './styles';
 
 class HelloWorld extends React.Component {
     render () {
@@ -200,7 +202,7 @@ class HelloWorld extends React.Component {
     }
 }
 
-ReactDOM.render(<HelloWorld />, document.getElementById("root"));
+ReactDOM.render(<HelloWorld />, document.getElementById('root'));
 ```
 
 UPDATE#1: При написании реакт компонентов принято использовать расширение для файлов .jsx
@@ -217,11 +219,11 @@ npm install --save-dev babel-plugin-transform-class-properties
 И обновить файл с настройками .babelrc
 ```js
 {
-    "presets": [
-        "@babel/preset-env",
-        "@babel/preset-react"
+    'presets': [
+        '@babel/preset-env',
+        '@babel/preset-react'
     ],
-    "plugins": ["transform-class-properties"]
+    'plugins': ['transform-class-properties']
 }
 ```
 
