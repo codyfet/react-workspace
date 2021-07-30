@@ -103,7 +103,7 @@ npm install --save-dev webpack-dev-server
 ```js
 'dev': 'webpack --mode development',
 'build': 'webpack --mode production',
-'start': 'webpack-dev-server --mode development --open --hot'
+'start': 'webpack serve --mode development --open --hot'
 ```
 ### Настраиваем работу со стилями
 
